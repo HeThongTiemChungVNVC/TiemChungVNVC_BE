@@ -25,7 +25,7 @@ namespace DAL.FluentAPI
             builder.Property(x => x.Phone).HasMaxLength(11);
             builder.Property(x => x.Email).HasMaxLength(50);
             builder.Property(x => x.Address).HasMaxLength(50);
-            builder.Property(x => x.Gender).HasMaxLength(10);
+            builder.Property(x => x.Gender);
             builder.Property(x => x.DateOfBirth).HasDefaultValue(DateTime.Now);
             builder.HasMany(x => x.MedicalRecords);
             builder.HasMany(x => x.VaccinationRegistrations);

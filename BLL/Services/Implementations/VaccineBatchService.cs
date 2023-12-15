@@ -4,6 +4,7 @@ using BLL.Requests;
 using BLL.Responses;
 using BLL.Services.Constracts;
 using DAL.Dtos;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Repository.DbContexts;
 using Repository.Repository;
@@ -65,7 +66,7 @@ namespace BLL.Services.Implementations
         {
             try
             {
-                var entity = repository.GetAll().FirstOrDefault(x => x.Id == idVaccineBatch && !x.IsDeleted);
+                var entity = repository.GetAll().AsQueryable().Include(x => x.Supplier).Include(x => x.Vaccine).FirstOrDefault(x => x.Id == idVaccineBatch && !x.IsDeleted);
                 if (entity == null)
                 {
                     return ApiResponse<VaccineBatchResponse>.ApiResponseFail("Lô vaccine này không tồn tại");
@@ -83,7 +84,7 @@ namespace BLL.Services.Implementations
         {
             try
             {
-                var entity = repository.GetAll().Where(x => !x.IsDeleted).ToList();
+                var entity = repository.GetAll().AsQueryable().Include(x => x.Supplier).Include(x => x.Vaccine).Where(x => !x.IsDeleted).ToList();
                 if (entity.Count() == 0)
                 {
                     return ApiResponse<List<VaccineBatchResponse>>.ApiResponseFail("Chưa có dữ liệu");
