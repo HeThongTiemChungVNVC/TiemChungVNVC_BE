@@ -15,7 +15,7 @@ namespace BLL.Configurations
             CreateMap<RegisterRequest, DtoUser>();
             CreateMap<DtoUser, RegisterRequest>();
             // Information
-            CreateMap<UserResponse, DtoInformation>();
+            CreateMap<UserResponse, DtoEmployee>().ReverseMap();
             CreateMap<InformationResponse, DtoInformation>();
             CreateMap<DtoInformation, InformationResponse>();
             CreateMap<DtoInformation, UserResponse>();

@@ -36,40 +36,6 @@ namespace TiemChungVNVC_BE.Controllers
 			}
 		}
 
-		[HttpPost("register")]
-		[ProducesResponseType(typeof(RegisterRequest), (int)HttpStatusCode.OK)]
-		public async Task<IActionResult> Register(RegisterRequest registerRequest)
-		{
-			try
-			{
-				var response = await _authService.Register(registerRequest);
-				if (!response.IsSuccess)
-				{
-					return NotFound(response);
-				}
-				return Ok(response);
-			}
-			catch (Exception ec)
-			{
-				return BadRequest(new ApiResponse<string>(false, "call api fail", ec.Message));
-			}
-		}
-
-		[HttpPost("register/confirm")]
-		public async Task<IActionResult> ConfirmRegister(ConfirmPinCodeRequest confirmPinCodeRequest)
-		{
-			try
-			{
-				var response = await _authService.ConfirmRegister(confirmPinCodeRequest);
-
-				return Ok(response);
-			}
-			catch (Exception ec)
-			{
-				return BadRequest(new ApiResponse<string>(false, "call api fail", ec.Message));
-			}
-		}
-
 		[HttpPost("forget-password")]
 		public async Task<IActionResult> ForgetPassword(ForgetPasswordRequest forgetPasswordRequest)
 		{
