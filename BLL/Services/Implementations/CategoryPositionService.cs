@@ -82,7 +82,7 @@ namespace BLL.Services.Implementations
         {
             try
             {
-                var entity = repository.GetAll().Where(x => !x.IsDeleted).ToList();
+                var entity = repository.GetAll().Where(x => !x.IsDeleted && x.Title!="Admin").ToList();
                 if (entity.Count() == 0)
                 {
                     return ApiResponse<List<CategoryPositionResponse>>.ApiResponseFail("Chưa có dữ liệu");

@@ -7,125 +7,124 @@ using System.Globalization;
 
 namespace Repository.Repositories
 {
-    public class InformationRepository
-    {
-        private readonly IRepository<DtoInformation> _repositoryInformation;
-        private readonly VNVCContext _dbContext;
+	public class InformationRepository
+	{
+		private readonly IRepository<DtoEmployee> _repositoryEmployee;
+		private readonly VNVCContext _dbContext;
 
-        public InformationRepository(
-            IRepository<DtoInformation> repositoryInformation,
-            VNVCContext db)
-        {
-            _repositoryInformation = repositoryInformation;
-            _dbContext = db;
-        }
+		public InformationRepository(
+			IRepository<DtoEmployee> repositoryEmployee,
+			VNVCContext db)
+		{
+			_repositoryEmployee = repositoryEmployee;
+			_dbContext = db;
+		}
 
-        public List<DtoInformation> GetAllInformations()
-        {
-            var informations = from i in _dbContext.Informations
-                               where !i.IsDeleted
-                               select i;
-            return informations.ToList();
-        }
+		public List<DtoEmployee> GetAllEmployees()
+		{
+			var Employees = from i in _dbContext.Employees
+							where !i.IsDeleted
+							select i;
+			return Employees.ToList();
+		}
 
-        public DtoInformation GetInformationByEmail(string email)
-        {
-            var information = (from i in _dbContext.Informations
-                               where !i.IsDeleted && i.Email == email
-                               select i).Include(x => x.User).FirstOrDefault();
-            return information;
-        }
+		public DtoEmployee GetEmployeeByEmail(string email)
+		{
+			var Employee = (from i in _dbContext.Employees
+							where !i.IsDeleted && i.Email == email
+							select i).Include(x => x.User).FirstOrDefault();
+			return Employee;
+		}
 
-        public DtoInformation GetInformationByUserId(string userId)
-        {
-            var information = (from i in _dbContext.Informations
-                               where !i.IsDeleted && i.UserId == userId
-                               select i).Include(x => x.User).FirstOrDefault();
-            return information;
-        }
+		public DtoEmployee GetEmployeeByUserId(string userId)
+		{
+			var Employee = (from i in _dbContext.Employees
+							where !i.IsDeleted && i.UserId == userId
+							select i).Include(x => x.User).FirstOrDefault();
+			return Employee;
+		}
 
-        public DtoInformation GetInformationByUserIdInludeDeleted(string userId)
-        {
-            var information = (from i in _dbContext.Informations
-                               where i.UserId == userId
-                               select i).Include(x => x.User).FirstOrDefault();
-            return information;
-        }
+		public DtoEmployee GetEmployeeByUserIdInludeDeleted(string userId)
+		{
+			var Employee = (from i in _dbContext.Employees
+							where i.UserId == userId
+							select i).Include(x => x.User).FirstOrDefault();
+			return Employee;
+		}
 
-        public DtoInformation GetInformationByPhoneNumber(string phoneNumber)
-        {
-            var information = (from i in _dbContext.Informations
-                               where !i.IsDeleted && i.Phone == phoneNumber
-                               select i).Include(x => x.User).FirstOrDefault();
-            return information;
-        }
+		public DtoEmployee GetEmployeeByPhoneNumber(string phoneNumber)
+		{
+			var Employee = (from i in _dbContext.Employees
+							where !i.IsDeleted && i.Phone == phoneNumber
+							select i).Include(x => x.User).FirstOrDefault();
+			return Employee;
+		}
 
-        public DtoInformation InsertInformation(DtoInformation information)
-        {
-            return _repositoryInformation.Insert(information);
-        }
+		public DtoEmployee InsertEmployee(DtoEmployee Employee)
+		{
+			return _repositoryEmployee.Insert(Employee);
+		}
 
-        public bool UpdateInformation(string? userId, string? fullName, string? gender, string? email, string? phoneNumber, string? address, string? dob)
-        {
-            try
-            {
-                var information = (from i in _dbContext.Informations
-                                   where i.UserId == userId
-                                   select i).FirstOrDefault();
+		public bool UpdateEmployee(string? userId, string? fullName, bool? gender, string? email, string? phoneNumber, string? address, DateTime? dob)
+		{
+			try
+			{
+				var Employee = (from i in _dbContext.Employees
+								where i.UserId == userId
+								select i).FirstOrDefault();
 
-                if (information == null)
-                {
-                    return false;
-                }
-                if (!string.IsNullOrEmpty(fullName))
-                {
-                    information.FullName = fullName;
-                }
-                if (!string.IsNullOrEmpty(gender))
-                {
-                    information.Gender = gender;
-                }
-                if (!string.IsNullOrEmpty(email))
-                {
-                    var informationDb = GetInformationByEmail(email);
-                    if (informationDb != null)
-                    {
-                        if (informationDb.UserId != information.UserId)
-                        {
-                            throw new Exception("Email already use");
-                        }
-                    }
-                    information.Email = email;
-                }
-                if (!string.IsNullOrEmpty(phoneNumber))
-                {
-                    var informationDb = GetInformationByPhoneNumber(phoneNumber);
-                    if (informationDb != null)
-                    {
-                        if (informationDb.UserId != information.UserId)
-                        {
-                            throw new Exception("Phone number already use");
-                        }
-                    }
-                    information.Phone = phoneNumber;
-                }
-                if (!string.IsNullOrEmpty(address))
-                {
-                    information.Address = address;
-                }
-                if (!string.IsNullOrEmpty(dob))
-                {
-                    DateTime result = DateTime.ParseExact(dob, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                    information.Dob = result;
-                }
-                information.UpdatedTime = DateTime.Now;
-                _repositoryInformation.Update(information);
-                return true;
-            }
-            catch (Exception ec)
-            {
-                throw new Exception(ec.Message);
-            }
-        }
-    }
+				if (Employee == null)
+				{
+					return false;
+				}
+				if (!string.IsNullOrEmpty(fullName))
+				{
+					Employee.FullName = fullName;
+				}
+				if (gender != null)
+				{
+					Employee.Gender = gender;
+				}
+				if (!string.IsNullOrEmpty(email))
+				{
+					var EmployeeDb = GetEmployeeByEmail(email);
+					if (EmployeeDb != null)
+					{
+						if (EmployeeDb.UserId != Employee.UserId)
+						{
+							throw new Exception("Email already use");
+						}
+					}
+					Employee.Email = email;
+				}
+				if (!string.IsNullOrEmpty(phoneNumber))
+				{
+					var EmployeeDb = GetEmployeeByPhoneNumber(phoneNumber);
+					if (EmployeeDb != null)
+					{
+						if (EmployeeDb.UserId != Employee.UserId)
+						{
+							throw new Exception("Phone number already use");
+						}
+					}
+					Employee.Phone = phoneNumber;
+				}
+				if (!string.IsNullOrEmpty(address))
+				{
+					Employee.Address = address;
+				}
+				if (dob != null)
+				{
+					Employee.DateOfBirth = (DateTime)dob;
+				}
+				Employee.UpdatedTime = DateTime.Now;
+				_repositoryEmployee.Update(Employee);
+				return true;
+			}
+			catch (Exception ec)
+			{
+				throw new Exception(ec.Message);
+			}
+		}
+	}
 }

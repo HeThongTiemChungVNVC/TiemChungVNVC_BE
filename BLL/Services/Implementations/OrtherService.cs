@@ -10,21 +10,21 @@ namespace BLL.Services.Implementations
 {
 	public class OrtherService : IOrtherService
 	{
-		private readonly InformationRepository _repositoryInformation;
+		private readonly InformationRepository _repositoryEmployee;
 		private readonly UserRepository _repositoryUser;
 
 		public OrtherService(
-			InformationRepository repositoryInformation,
+			InformationRepository repositoryEmployee,
 			UserRepository repositoryUser)
 		{
-			_repositoryInformation = repositoryInformation;
+			_repositoryEmployee = repositoryEmployee;
 			_repositoryUser = repositoryUser;
 		}
 
 		public async Task<bool> CheckEmail(string email)
 		{
-			var information = _repositoryInformation.GetInformationByEmail(email);
-			if (information == null)
+			var Employee = _repositoryEmployee.GetEmployeeByEmail(email);
+			if (Employee == null)
 			{
 				return false;
 			}
@@ -33,8 +33,8 @@ namespace BLL.Services.Implementations
 
 		public async Task<bool> CheckPhoneNumber(string phoneNumber)
 		{
-			var information = _repositoryInformation.GetInformationByPhoneNumber(phoneNumber);
-			if (information == null)
+			var Employee = _repositoryEmployee.GetEmployeeByPhoneNumber(phoneNumber);
+			if (Employee == null)
 			{
 				return false;
 			}
@@ -43,8 +43,8 @@ namespace BLL.Services.Implementations
 
 		public async Task<bool> CheckUsername(string username)
 		{
-			var information = _repositoryUser.GetUserByUsername(username);
-			if (information == null)
+			var Employee = _repositoryUser.GetUserByUsername(username);
+			if (Employee == null)
 			{
 				return false;
 			}

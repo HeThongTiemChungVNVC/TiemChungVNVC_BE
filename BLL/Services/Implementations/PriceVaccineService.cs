@@ -83,7 +83,7 @@ namespace BLL.Services.Implementations
         {
             try
             {
-                var entity = repository.GetAll().AsQueryable().Include(x => x.VaccinceBatch).Where(x => !x.IsDeleted).ToList();
+                var entity = repository.GetAll().AsQueryable().Include(x => x.VaccinceBatch).ThenInclude(x=>x.Vaccine).Where(x => !x.IsDeleted).ToList();
                 if (entity.Count() == 0)
                 {
                     return ApiResponse<List<PriceVaccineResponse>>.ApiResponseFail("Chưa có dữ liệu");

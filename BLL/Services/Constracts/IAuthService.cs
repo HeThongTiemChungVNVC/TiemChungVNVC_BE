@@ -1,6 +1,7 @@
 ﻿using BLL.Common;
 using BLL.Requests;
 using BLL.Responses;
+using DAL.Dtos;
 
 namespace BLL.Services.Constracts
 {
@@ -8,13 +9,7 @@ namespace BLL.Services.Constracts
 	{
 		Task<ApiResponse<UserResponse>> Login(LoginRequest loginRequest);
 
-		Task<ApiResponse<PasswordRecoveryTokenResponse>> Register(RegisterRequest registerRequest);
-
 		Task<ApiResponse<UserResponse>> RefeshToken(string refeshToken);
-
-		Task<ApiResponse<InformationResponse>> Information(string userId);
-
-		Task<ApiResponse<string>> UpdateInformation(UpdateInformationRequest updateInformationRequest);
 
 		Task<ApiResponse<PasswordRecoveryTokenResponse>> ForgetPassword(ForgetPasswordRequest forgetPasswordRequest);
 
@@ -22,6 +17,6 @@ namespace BLL.Services.Constracts
 
 		Task<ApiResponse<string>> ChangePassword(ChangePasswordRequest changePasswordRequest);
 
-		Task<ApiResponse<string>> ConfirmRegister(ConfirmPinCodeRequest confirmPinCodeRequest);
+		Task<ApiResponse<DtoUser>> CreateAccountForEmployee(DtoEmployee employee);
 	}
 }

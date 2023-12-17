@@ -28,14 +28,37 @@ namespace BLL.Services.Implementations
             _context = context;
             this.repository = repository;
         }
+		private static string GetNumericPart(Guid guid)
+		{
+			// Convert the GUID to a string and remove non-numeric characters
+			string numericPart = new string(guid.ToString().Where(char.IsDigit).ToArray());
 
-        public async Task<ApiResponse<string>> CreateVaccineBatch(CreateVaccineBatchRequest createVaccineBatchRequest)
+			// Ensure the length is 8 by taking the first 8 characters
+			numericPart = numericPart.Length >= 6 ? numericPart.Substring(0, 6) : numericPart;
+
+			return numericPart;
+		}
+		public async Task<ApiResponse<string>> CreateVaccineBatch(CreateVaccineBatchRequest createVaccineBatchRequest)
         {
             try
             {
-                var VaccineBatch = _mapper.Map<DtoVaccineBatch>(createVaccineBatchRequest);
+                var supplier = _context.Suppliers.FirstOrDefault(x => x.Id == createVaccineBatchRequest.SupplierId);
+                if(supplier != null)
+                {
+                    createVaccineBatchRequest.Country = supplier.Address;
+                }
+				var VaccineBatch = _mapper.Map<DtoVaccineBatch>(createVaccineBatchRequest);
+				while (true)
+				{
+					var codeBatch = "LH" + GetNumericPart(Guid.NewGuid());
+					if (repository.GetAll().FirstOrDefault(x => x.CodeBatch == codeBatch) == null)
+					{
+						VaccineBatch.CodeBatch = codeBatch;
+						break;
+					}
+				}
                 repository.Insert(VaccineBatch);
-                return ApiResponse<string>.ApiResponseSuccess("Thêm thành công");
+                return ApiResponse<string>.ApiResponseSuccess("Thêm thành công","Thêm thành công");
             }
             catch (Exception ec)
             {
