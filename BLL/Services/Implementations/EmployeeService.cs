@@ -111,11 +111,29 @@ namespace BLL.Services.Implementations
 			}
 		}
 
+		public async Task<ApiResponse<EmployeeResponse>> GetEmployeeByUserId(string userId)
+		{
+			try
+			{
+				var entity = repository.GetAll().AsQueryable().Include(x => x.CategoryPosition).Include(x=>x.User).Include(x => x.VaccinationCenter).FirstOrDefault(x => x.UserId == userId && !x.IsDeleted);
+				if (entity == null)
+				{
+					return ApiResponse<EmployeeResponse>.ApiResponseFail("Nhân viên này không tồn tại");
+				}
+				var response = _mapper.Map<EmployeeResponse>(entity);
+				return ApiResponse<EmployeeResponse>.ApiResponseSuccess(response);
+			}
+			catch (Exception ec)
+			{
+				return ApiResponse<EmployeeResponse>.ApiResponseFail(ec.Message);
+			}
+		}
+
 		public async Task<ApiResponse<List<EmployeeResponse>>> GetEmployees()
 		{
 			try
 			{
-				var entity = repository.GetAll().AsQueryable().Include(x => x.CategoryPosition).Include(x => x.VaccinationCenter).Where(x => !x.IsDeleted).ToList();
+				var entity = repository.GetAll().AsQueryable().Include(x => x.CategoryPosition).Include(x => x.VaccinationCenter).Where(x => !x.IsDeleted && x.CategoryPosition.Title!="Admin").ToList();
 				if (entity.Count() == 0)
 				{
 					return ApiResponse<List<EmployeeResponse>>.ApiResponseFail("Chưa có dữ liệu");
@@ -163,6 +181,7 @@ namespace BLL.Services.Implementations
 				{
 					entity.IdVaccinationCenter = updateEmployeeRequest.IdVaccinationCenter;
 				}
+				entity.DateOfBirth = updateEmployeeRequest.DateOfBirth;
 				entity.UpdatedTime = DateTime.Now;
 				repository.Update(entity);
 				return ApiResponse<string>.ApiResponseSuccess("Cập nhật thành công");

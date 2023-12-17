@@ -9,16 +9,18 @@ using System.Threading.Tasks;
 
 namespace BLL.Services.Constracts
 {
-    public interface IEmployeeService
-    {
-        Task<ApiResponse<string>> CreateEmployee(CreateEmployeeRequest createEmployeeRequest);
+	public interface IEmployeeService
+	{
+		Task<ApiResponse<string>> CreateEmployee(CreateEmployeeRequest createEmployeeRequest);
 
-        Task<ApiResponse<List<EmployeeResponse>>> GetEmployees();
+		Task<ApiResponse<List<EmployeeResponse>>> GetEmployees();
 
-        Task<ApiResponse<EmployeeResponse>> GetEmployee(string idEmployee);
+		Task<ApiResponse<EmployeeResponse>> GetEmployee(string idEmployee);
 
-        Task<ApiResponse<string>> UpdateEmployee(UpdateEmployeeRequest updateEmployeeRequest);
+		Task<ApiResponse<EmployeeResponse>> GetEmployeeByUserId(string userId);
 
-        Task<ApiResponse<string>> DeleteEmployee(string idEmployee);
-    }
+		Task<ApiResponse<string>> UpdateEmployee(UpdateEmployeeRequest updateEmployeeRequest);
+
+		Task<ApiResponse<string>> DeleteEmployee(string idEmployee);
+	}
 }

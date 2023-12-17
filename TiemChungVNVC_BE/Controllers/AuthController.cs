@@ -86,5 +86,23 @@ namespace TiemChungVNVC_BE.Controllers
 				return BadRequest(new ApiResponse<string>(false, "Call api fail", ec.Message));
 			}
 		}
+
+		[HttpPut("change-password")]
+		public async Task<IActionResult> ChangePassword(ChangePasswordRequest change)
+		{
+			try
+			{
+				var response = await _authService.ChangePassword(change);
+				if (!response.IsSuccess)
+				{
+					return NotFound(response);
+				}
+				return Ok(response);
+			}
+			catch (Exception ec)
+			{
+				return BadRequest(new ApiResponse<string>(false, "Call api fail", ec.Message));
+			}
+		}
 	}
 }

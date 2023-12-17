@@ -44,6 +44,20 @@ namespace TiemChungVNVC_BE.Controllers
 			}
 		}
 
+		[HttpGet("user/{id}")]
+		public async Task<IActionResult> GetByUser(string id)
+		{
+			try
+			{
+				var response = await EmployeeService.GetEmployeeByUserId(id);
+				return Ok(response);
+			}
+			catch (Exception ec)
+			{
+				return BadRequest(ec.Message);
+			}
+		}
+
 		[HttpDelete("{id}")]
 		public async Task<IActionResult> Delete(string id)
 		{
