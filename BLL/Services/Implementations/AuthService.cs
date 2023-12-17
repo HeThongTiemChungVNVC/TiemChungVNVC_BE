@@ -86,6 +86,7 @@ namespace BLL.Services.Implementations
 					userResponse.AccessToken = GenerateAccessToken(user);
 					userResponse.RefeshToken = GenerateRefeshToken(user);
 					userResponse.Role = user.Role;
+					userResponse.EmployeeId = Employee.Id;
 					return ApiResponse<UserResponse>.ApiResponseSuccess("Đăng nhập thành công", userResponse);
 				}
 				return ApiResponse<UserResponse>.ApiResponseFail("Tài khoản hoặc mật khẩu không chính xác!");

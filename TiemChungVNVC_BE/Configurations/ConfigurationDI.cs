@@ -30,6 +30,7 @@ namespace TiemChungVNVC_BE.Configurations
 			services.AddScoped<IVaccinationCenterService, VaccinationCenterService>();
 			services.AddScoped<ICustomerService, CustomerService>();
 			services.AddScoped<IEmployeeService, EmployeeService>();
+			services.AddScoped<IVaccinationRegistrationSevice, VaccinationRegistrationService>();
 
 			return services;
 		}

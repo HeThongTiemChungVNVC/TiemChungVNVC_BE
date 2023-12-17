@@ -8,18 +8,17 @@ using System.Threading.Tasks;
 
 namespace BLL.Requests
 {
-    public class UpdateVaccinationRegistrationRequest
-    {
-        public string Id { get; set; }
-        public string NameCustomer { get; set; }
-        public string VaccinationDate { get; set; }
-        public string IdVaccineBatch { get; set; }
-        public string IdVaccinationCenter { get; set; }
-        public int NumberOfDosesRemaining { get; set; }
-        public bool Status { get; set; }
-        public float TotalPrice { get; set; }
-        public string Note { get; set; }
+	public class UpdateVaccinationRegistrationRequest
+	{
+		public string Id { get; set; }
+		public string? NameCustomer { get; set; }
+		public string VaccinationDate { get; set; }
+		public string IdVaccineBatch { get; set; }
+		public string IdVaccinationCenter { get; set; }
+		public int? NumberOfDosesRemaining { get; set; }
+		public int? Status { get; set; }
+		public string? Note { get; set; }
 
-        public string IdEmployee { get; set; }
-    }
+		public string? IdEmployee { get; set; }
+	}
 }

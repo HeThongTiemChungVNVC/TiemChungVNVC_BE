@@ -13,9 +13,10 @@ namespace Repository.DbContexts
 		public DbSet<DtoUser> Users { get; set; }
 		public DbSet<DtoRefeshToken> RefeshTokens { get; set; }
 		public DbSet<DtoPasswordRecoveryToken> RecoveryTokens { get; set; }
-		public DbSet<DtoCity> Cities { get; set; }
-		public DbSet<DtoDistrict> Districts { get; set; }
-		public DbSet<DtoWard> Wards { get; set; }
+
+		//public DbSet<DtoCity> Cities { get; set; }
+		//public DbSet<DtoDistrict> Districts { get; set; }
+		//public DbSet<DtoWard> Wards { get; set; }
 		public DbSet<DtoEmployee> Employees { get; set; }
 
 		public DbSet<DtoCustomer> Customers { get; set; }
@@ -39,9 +40,9 @@ namespace Repository.DbContexts
 			modelBuilder.ApplyConfiguration(new RefeshTokenFluentAPI());
 			modelBuilder.ApplyConfiguration(new UserFluentAPI());
 			modelBuilder.ApplyConfiguration(new PasswordRecoveryTokenFluentAPI());
-			modelBuilder.ApplyConfiguration(new CityFluentAPI());
-			modelBuilder.ApplyConfiguration(new DistrictFluentAPI());
-			modelBuilder.ApplyConfiguration(new WardFluentAPI());
+			//modelBuilder.ApplyConfiguration(new CityFluentAPI());
+			//modelBuilder.ApplyConfiguration(new DistrictFluentAPI());
+			//modelBuilder.ApplyConfiguration(new WardFluentAPI());
 			modelBuilder.ApplyConfiguration(new EmployeeFluentAPI());
 			modelBuilder.ApplyConfiguration(new CustomerFluentAPI());
 			modelBuilder.ApplyConfiguration(new CategoryPositionFluentAPI());

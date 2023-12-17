@@ -36,7 +36,7 @@ namespace Repository.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 166, DateTimeKind.Local).AddTicks(3894));
+                        .HasDefaultValue(new DateTime(2023, 12, 18, 4, 27, 46, 287, DateTimeKind.Local).AddTicks(9711));
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
@@ -54,7 +54,7 @@ namespace Repository.Migrations
                     b.Property<DateTime>("UpdatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 166, DateTimeKind.Local).AddTicks(4830));
+                        .HasDefaultValue(new DateTime(2023, 12, 18, 4, 27, 46, 288, DateTimeKind.Local).AddTicks(417));
 
                     b.HasKey("Id");
 
@@ -75,7 +75,7 @@ namespace Repository.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 166, DateTimeKind.Local).AddTicks(6139));
+                        .HasDefaultValue(new DateTime(2023, 12, 18, 4, 27, 46, 288, DateTimeKind.Local).AddTicks(2598));
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
@@ -93,50 +93,11 @@ namespace Repository.Migrations
                     b.Property<DateTime>("UpdatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 166, DateTimeKind.Local).AddTicks(7290));
+                        .HasDefaultValue(new DateTime(2023, 12, 18, 4, 27, 46, 288, DateTimeKind.Local).AddTicks(4295));
 
                     b.HasKey("Id");
 
                     b.ToTable("CategoryVaccine", (string)null);
-                });
-
-            modelBuilder.Entity("DAL.Dtos.DtoCity", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
-                    b.Property<string>("CreatedBy")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(max)")
-                        .HasDefaultValue("admin");
-
-                    b.Property<DateTime>("CreatedTime")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 163, DateTimeKind.Local).AddTicks(9754));
-
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
-                    b.Property<string>("NameCity")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedTime")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 164, DateTimeKind.Local).AddTicks(979));
-
-                    b.HasKey("Id");
-
-                    b.ToTable("City", (string)null);
                 });
 
             modelBuilder.Entity("DAL.Dtos.DtoCustomer", b =>
@@ -163,12 +124,12 @@ namespace Repository.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 165, DateTimeKind.Local).AddTicks(9926));
+                        .HasDefaultValue(new DateTime(2023, 12, 18, 4, 27, 46, 287, DateTimeKind.Local).AddTicks(6242));
 
                     b.Property<DateTime>("DateOfBirth")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 166, DateTimeKind.Local).AddTicks(685));
+                        .HasDefaultValue(new DateTime(2023, 12, 18, 4, 27, 46, 287, DateTimeKind.Local).AddTicks(6942));
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -199,7 +160,7 @@ namespace Repository.Migrations
                     b.Property<DateTime>("UpdatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 166, DateTimeKind.Local).AddTicks(2848));
+                        .HasDefaultValue(new DateTime(2023, 12, 18, 4, 27, 46, 287, DateTimeKind.Local).AddTicks(8513));
 
                     b.HasKey("Id");
 
@@ -231,7 +192,7 @@ namespace Repository.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 169, DateTimeKind.Local).AddTicks(1779));
+                        .HasDefaultValue(new DateTime(2023, 12, 18, 4, 27, 46, 290, DateTimeKind.Local).AddTicks(9347));
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
@@ -244,7 +205,7 @@ namespace Repository.Migrations
                     b.Property<DateTime>("UpdatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 169, DateTimeKind.Local).AddTicks(6122));
+                        .HasDefaultValue(new DateTime(2023, 12, 18, 4, 27, 46, 291, DateTimeKind.Local).AddTicks(3854));
 
                     b.HasKey("Id", "IdMedicalRecord");
 
@@ -267,12 +228,12 @@ namespace Repository.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 170, DateTimeKind.Local).AddTicks(2920));
+                        .HasDefaultValue(new DateTime(2023, 12, 18, 4, 27, 46, 291, DateTimeKind.Local).AddTicks(9160));
 
                     b.Property<DateTime>("DateVaccination")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 170, DateTimeKind.Local).AddTicks(3800));
+                        .HasDefaultValue(new DateTime(2023, 12, 18, 4, 27, 46, 291, DateTimeKind.Local).AddTicks(9629));
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -299,59 +260,13 @@ namespace Repository.Migrations
                     b.Property<DateTime>("UpdatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 170, DateTimeKind.Local).AddTicks(7280));
+                        .HasDefaultValue(new DateTime(2023, 12, 18, 4, 27, 46, 292, DateTimeKind.Local).AddTicks(2885));
 
                     b.HasKey("Id");
 
                     b.HasIndex("IdVaccinationRegistration");
 
                     b.ToTable("DetailVaccinationRegistration", (string)null);
-                });
-
-            modelBuilder.Entity("DAL.Dtos.DtoDistrict", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
-                    b.Property<string>("CreatedBy")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(max)")
-                        .HasDefaultValue("admin");
-
-                    b.Property<DateTime>("CreatedTime")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 164, DateTimeKind.Local).AddTicks(2215));
-
-                    b.Property<string>("IdCity")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
-                    b.Property<string>("NameDistrict")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedTime")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 164, DateTimeKind.Local).AddTicks(5805));
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdCity");
-
-                    b.ToTable("District", (string)null);
                 });
 
             modelBuilder.Entity("DAL.Dtos.DtoEmployee", b =>
@@ -378,12 +293,12 @@ namespace Repository.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 165, DateTimeKind.Local).AddTicks(1078));
+                        .HasDefaultValue(new DateTime(2023, 12, 18, 4, 27, 46, 286, DateTimeKind.Local).AddTicks(6580));
 
                     b.Property<DateTime>("DateOfBirth")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 165, DateTimeKind.Local).AddTicks(2295));
+                        .HasDefaultValue(new DateTime(2023, 12, 18, 4, 27, 46, 286, DateTimeKind.Local).AddTicks(7928));
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -453,7 +368,7 @@ namespace Repository.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 166, DateTimeKind.Local).AddTicks(8462));
+                        .HasDefaultValue(new DateTime(2023, 12, 18, 4, 27, 46, 288, DateTimeKind.Local).AddTicks(6152));
 
                     b.Property<int>("Doses")
                         .HasColumnType("int");
@@ -482,7 +397,7 @@ namespace Repository.Migrations
                     b.Property<DateTime>("UpdatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 166, DateTimeKind.Local).AddTicks(9429));
+                        .HasDefaultValue(new DateTime(2023, 12, 18, 4, 27, 46, 288, DateTimeKind.Local).AddTicks(7216));
 
                     b.HasKey("Id");
 
@@ -506,7 +421,7 @@ namespace Repository.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 169, DateTimeKind.Local).AddTicks(7582));
+                        .HasDefaultValue(new DateTime(2023, 12, 18, 4, 27, 46, 291, DateTimeKind.Local).AddTicks(5255));
 
                     b.Property<string>("IdCustomer")
                         .IsRequired()
@@ -524,7 +439,7 @@ namespace Repository.Migrations
                     b.Property<DateTime>("UpdatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 169, DateTimeKind.Local).AddTicks(8789));
+                        .HasDefaultValue(new DateTime(2023, 12, 18, 4, 27, 46, 291, DateTimeKind.Local).AddTicks(6158));
 
                     b.HasKey("Id");
 
@@ -539,7 +454,7 @@ namespace Repository.Migrations
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
-                        .HasDefaultValue("104420f7_e");
+                        .HasDefaultValue("6f002573_6");
 
                     b.Property<string>("UserId")
                         .HasMaxLength(50)
@@ -553,7 +468,7 @@ namespace Repository.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 163, DateTimeKind.Local).AddTicks(7272));
+                        .HasDefaultValue(new DateTime(2023, 12, 18, 4, 27, 46, 286, DateTimeKind.Local).AddTicks(3756));
 
                     b.Property<DateTime>("Expires")
                         .HasColumnType("datetime2");
@@ -574,7 +489,7 @@ namespace Repository.Migrations
                     b.Property<DateTime>("UpdatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 163, DateTimeKind.Local).AddTicks(8608));
+                        .HasDefaultValue(new DateTime(2023, 12, 18, 4, 27, 46, 286, DateTimeKind.Local).AddTicks(5070));
 
                     b.HasKey("Id", "UserId");
 
@@ -600,7 +515,7 @@ namespace Repository.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 167, DateTimeKind.Local).AddTicks(374));
+                        .HasDefaultValue(new DateTime(2023, 12, 18, 4, 27, 46, 288, DateTimeKind.Local).AddTicks(8401));
 
                     b.Property<string>("IdVaccineBacth")
                         .IsRequired()
@@ -624,7 +539,7 @@ namespace Repository.Migrations
                     b.Property<DateTime>("UpdatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 167, DateTimeKind.Local).AddTicks(1210));
+                        .HasDefaultValue(new DateTime(2023, 12, 18, 4, 27, 46, 288, DateTimeKind.Local).AddTicks(9149));
 
                     b.HasKey("Id");
 
@@ -640,7 +555,7 @@ namespace Repository.Migrations
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
-                        .HasDefaultValue("478ba5eb_5");
+                        .HasDefaultValue("259a4950_9");
 
                     b.Property<string>("RefeshToken")
                         .HasColumnType("nvarchar(450)");
@@ -657,7 +572,7 @@ namespace Repository.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 162, DateTimeKind.Local).AddTicks(9561));
+                        .HasDefaultValue(new DateTime(2023, 12, 18, 4, 27, 46, 285, DateTimeKind.Local).AddTicks(5451));
 
                     b.Property<DateTime>("Expires")
                         .HasColumnType("datetime2");
@@ -673,7 +588,7 @@ namespace Repository.Migrations
                     b.Property<DateTime>("UpdatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 163, DateTimeKind.Local).AddTicks(1173));
+                        .HasDefaultValue(new DateTime(2023, 12, 18, 4, 27, 46, 285, DateTimeKind.Local).AddTicks(7158));
 
                     b.HasKey("Id", "RefeshToken", "UserId");
 
@@ -700,7 +615,7 @@ namespace Repository.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 167, DateTimeKind.Local).AddTicks(2142));
+                        .HasDefaultValue(new DateTime(2023, 12, 18, 4, 27, 46, 289, DateTimeKind.Local).AddTicks(206));
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -725,7 +640,7 @@ namespace Repository.Migrations
                     b.Property<DateTime>("UpdatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 167, DateTimeKind.Local).AddTicks(3483));
+                        .HasDefaultValue(new DateTime(2023, 12, 18, 4, 27, 46, 289, DateTimeKind.Local).AddTicks(1703));
 
                     b.HasKey("Id");
 
@@ -746,7 +661,7 @@ namespace Repository.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 163, DateTimeKind.Local).AddTicks(2372));
+                        .HasDefaultValue(new DateTime(2023, 12, 18, 4, 27, 46, 285, DateTimeKind.Local).AddTicks(8477));
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
@@ -770,7 +685,7 @@ namespace Repository.Migrations
                     b.Property<DateTime>("UpdatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 163, DateTimeKind.Local).AddTicks(4533));
+                        .HasDefaultValue(new DateTime(2023, 12, 18, 4, 27, 46, 286, DateTimeKind.Local).AddTicks(866));
 
                     b.Property<string>("Username")
                         .IsRequired()
@@ -805,7 +720,7 @@ namespace Repository.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 167, DateTimeKind.Local).AddTicks(4556));
+                        .HasDefaultValue(new DateTime(2023, 12, 18, 4, 27, 46, 289, DateTimeKind.Local).AddTicks(2777));
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
@@ -824,7 +739,7 @@ namespace Repository.Migrations
                     b.Property<DateTime>("UpdatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 167, DateTimeKind.Local).AddTicks(6680));
+                        .HasDefaultValue(new DateTime(2023, 12, 18, 4, 27, 46, 289, DateTimeKind.Local).AddTicks(4804));
 
                     b.HasKey("Id");
 
@@ -845,7 +760,7 @@ namespace Repository.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 170, DateTimeKind.Local).AddTicks(8586));
+                        .HasDefaultValue(new DateTime(2023, 12, 18, 4, 27, 46, 292, DateTimeKind.Local).AddTicks(4296));
 
                     b.Property<string>("IdCustomer")
                         .IsRequired()
@@ -883,10 +798,10 @@ namespace Repository.Migrations
                     b.Property<int>("NumberOfDosesRemaining")
                         .HasColumnType("int");
 
-                    b.Property<bool>("Status")
+                    b.Property<int>("Status")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.Property<float>("TotalPrice")
                         .HasColumnType("real");
@@ -897,7 +812,7 @@ namespace Repository.Migrations
                     b.Property<DateTime>("UpdatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 171, DateTimeKind.Local).AddTicks(6913));
+                        .HasDefaultValue(new DateTime(2023, 12, 18, 4, 27, 46, 293, DateTimeKind.Local).AddTicks(3642));
 
                     b.Property<DateTime>("VaccinationDate")
                         .HasColumnType("datetime2");
@@ -910,8 +825,7 @@ namespace Repository.Migrations
 
                     b.HasIndex("IdVaccinationCenter");
 
-                    b.HasIndex("IdVaccineBatch")
-                        .IsUnique();
+                    b.HasIndex("IdVaccineBatch");
 
                     b.ToTable("VaccinationRegistration", (string)null);
                 });
@@ -939,7 +853,7 @@ namespace Repository.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 167, DateTimeKind.Local).AddTicks(7856));
+                        .HasDefaultValue(new DateTime(2023, 12, 18, 4, 27, 46, 289, DateTimeKind.Local).AddTicks(6011));
 
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
@@ -965,7 +879,7 @@ namespace Repository.Migrations
                     b.Property<DateTime>("UpdatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 168, DateTimeKind.Local).AddTicks(1949));
+                        .HasDefaultValue(new DateTime(2023, 12, 18, 4, 27, 46, 290, DateTimeKind.Local).AddTicks(854));
 
                     b.HasKey("Id");
 
@@ -996,12 +910,12 @@ namespace Repository.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 168, DateTimeKind.Local).AddTicks(3114));
+                        .HasDefaultValue(new DateTime(2023, 12, 18, 4, 27, 46, 290, DateTimeKind.Local).AddTicks(2422));
 
                     b.Property<DateTime>("ExpirationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 168, DateTimeKind.Local).AddTicks(4385));
+                        .HasDefaultValue(new DateTime(2023, 12, 18, 4, 27, 46, 290, DateTimeKind.Local).AddTicks(3690));
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
@@ -1011,7 +925,7 @@ namespace Repository.Migrations
                     b.Property<DateTime>("ManufacturingDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 168, DateTimeKind.Local).AddTicks(4128));
+                        .HasDefaultValue(new DateTime(2023, 12, 18, 4, 27, 46, 290, DateTimeKind.Local).AddTicks(3410));
 
                     b.Property<int>("QuantityOfVaccine")
                         .HasColumnType("int");
@@ -1027,7 +941,7 @@ namespace Repository.Migrations
                     b.Property<DateTime>("UpdatedTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 169, DateTimeKind.Local).AddTicks(504));
+                        .HasDefaultValue(new DateTime(2023, 12, 18, 4, 27, 46, 290, DateTimeKind.Local).AddTicks(7867));
 
                     b.Property<string>("VaccineId")
                         .IsRequired()
@@ -1041,52 +955,6 @@ namespace Repository.Migrations
                     b.HasIndex("VaccineId");
 
                     b.ToTable("VaccineBatch", (string)null);
-                });
-
-            modelBuilder.Entity("DAL.Dtos.DtoWard", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
-                    b.Property<string>("CreatedBy")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(max)")
-                        .HasDefaultValue("admin");
-
-                    b.Property<DateTime>("CreatedTime")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 164, DateTimeKind.Local).AddTicks(7321));
-
-                    b.Property<string>("IdDistrict")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
-                    b.Property<string>("NameWard")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedTime")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 16, 22, 7, 27, 164, DateTimeKind.Local).AddTicks(9769));
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdDistrict");
-
-                    b.ToTable("Ward", (string)null);
                 });
 
             modelBuilder.Entity("DAL.Dtos.DtoDetailMedicalRecord", b =>
@@ -1111,18 +979,6 @@ namespace Repository.Migrations
                         .HasConstraintName("FK_details_vaccinationRegistration");
 
                     b.Navigation("VaccinationRegistration");
-                });
-
-            modelBuilder.Entity("DAL.Dtos.DtoDistrict", b =>
-                {
-                    b.HasOne("DAL.Dtos.DtoCity", "City")
-                        .WithMany("Districts")
-                        .HasForeignKey("IdCity")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_District_City");
-
-                    b.Navigation("City");
                 });
 
             modelBuilder.Entity("DAL.Dtos.DtoEmployee", b =>
@@ -1236,10 +1092,11 @@ namespace Repository.Migrations
                         .HasConstraintName("FK_registration_center");
 
                     b.HasOne("DAL.Dtos.DtoVaccineBatch", "VaccineBatch")
-                        .WithOne("VaccinationRegistration")
-                        .HasForeignKey("DAL.Dtos.DtoVaccinationRegistration", "IdVaccineBatch")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("VaccinationRegistrations")
+                        .HasForeignKey("IdVaccineBatch")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired()
+                        .HasConstraintName("FK_registration_batch");
 
                     b.Navigation("Customer");
 
@@ -1282,18 +1139,6 @@ namespace Repository.Migrations
                     b.Navigation("Vaccine");
                 });
 
-            modelBuilder.Entity("DAL.Dtos.DtoWard", b =>
-                {
-                    b.HasOne("DAL.Dtos.DtoDistrict", "District")
-                        .WithMany("Wards")
-                        .HasForeignKey("IdDistrict")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_Ward_District");
-
-                    b.Navigation("District");
-                });
-
             modelBuilder.Entity("DAL.Dtos.DtoCategoryPosition", b =>
                 {
                     b.Navigation("Employees");
@@ -1304,21 +1149,11 @@ namespace Repository.Migrations
                     b.Navigation("Vaccines");
                 });
 
-            modelBuilder.Entity("DAL.Dtos.DtoCity", b =>
-                {
-                    b.Navigation("Districts");
-                });
-
             modelBuilder.Entity("DAL.Dtos.DtoCustomer", b =>
                 {
                     b.Navigation("MedicalRecords");
 
                     b.Navigation("VaccinationRegistrations");
-                });
-
-            modelBuilder.Entity("DAL.Dtos.DtoDistrict", b =>
-                {
-                    b.Navigation("Wards");
                 });
 
             modelBuilder.Entity("DAL.Dtos.DtoEmployee", b =>
@@ -1371,8 +1206,7 @@ namespace Repository.Migrations
                     b.Navigation("PriceVaccine")
                         .IsRequired();
 
-                    b.Navigation("VaccinationRegistration")
-                        .IsRequired();
+                    b.Navigation("VaccinationRegistrations");
                 });
 #pragma warning restore 612, 618
         }

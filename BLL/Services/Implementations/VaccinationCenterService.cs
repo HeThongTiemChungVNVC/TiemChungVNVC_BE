@@ -33,7 +33,7 @@ namespace BLL.Services.Implementations
             {
                 var categoryVacine = _mapper.Map<DtoVaccinationCenter>(createVaccinationCenterRequest);
                 repository.Insert(categoryVacine);
-                return ApiResponse<string>.ApiResponseSuccess("Thêm thành công");
+                return ApiResponse<string>.ApiResponseSuccess("Thêm thành công", "Thêm thành công");
             }
             catch (Exception ec)
             {
@@ -48,11 +48,11 @@ namespace BLL.Services.Implementations
                 var entity = repository.GetAll().FirstOrDefault(x => x.Id == idVaccinationCenter);
                 if (entity == null)
                 {
-                    return ApiResponse<string>.ApiResponseFail("Loại chức vụ này không tồn tại");
+                    return ApiResponse<string>.ApiResponseFail("Loại chức vụ này không tồn tại", "Loại chức vụ này không tồn tại");
                 }
                 entity.IsDeleted = true;
                 repository.Update(entity);
-                return ApiResponse<string>.ApiResponseSuccess("Xóa thành công");
+                return ApiResponse<string>.ApiResponseSuccess("Xóa thành công", "Xóa thành công");
             }
             catch (Exception ec)
             {
@@ -103,7 +103,7 @@ namespace BLL.Services.Implementations
                 var entity = repository.GetAll().FirstOrDefault(x => x.Id == updateVaccinationCenterRequest.Id);
                 if (entity == null)
                 {
-                    return ApiResponse<string>.ApiResponseFail("Loại chức vụ này không tồn tại");
+                    return ApiResponse<string>.ApiResponseFail("Trung tâm này không tồn tại", "Trung tâm này không tồn tại");
                 }
                 if (!string.IsNullOrEmpty(updateVaccinationCenterRequest.CenterName))
                 {
@@ -121,7 +121,7 @@ namespace BLL.Services.Implementations
                 entity.CloseTime = updateVaccinationCenterRequest.CloseTime;
                 entity.UpdatedTime = DateTime.Now;
                 repository.Update(entity);
-                return ApiResponse<string>.ApiResponseSuccess("Cập nhật thành công");
+                return ApiResponse<string>.ApiResponseSuccess("Cập nhật thành công", "Cập nhật thành công");
             }
             catch (Exception ec)
             {

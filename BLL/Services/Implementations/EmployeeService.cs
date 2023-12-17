@@ -65,7 +65,7 @@ namespace BLL.Services.Implementations
 
 				employee.UserId = responseAuth.Data.Id;
 				repository.Insert(employee);
-				return ApiResponse<string>.ApiResponseSuccess("Thêm thành công");
+				return ApiResponse<string>.ApiResponseSuccess("Thêm thành công", "Thêm thành công");
 			}
 			catch (Exception ec)
 			{
@@ -81,11 +81,11 @@ namespace BLL.Services.Implementations
 				var entity = repository.GetAll().FirstOrDefault(x => x.Id == idEmployee);
 				if (entity == null)
 				{
-					return ApiResponse<string>.ApiResponseFail("Nhân viên này không tồn tại");
+					return ApiResponse<string>.ApiResponseFail("Nhân viên này không tồn tại", "Nhân viên này không tồn tại");
 				}
 				entity.IsDeleted = true;
 				repository.Update(entity);
-				return ApiResponse<string>.ApiResponseSuccess("Xóa thành công");
+				return ApiResponse<string>.ApiResponseSuccess("Xóa thành công", "Xóa thành công");
 			}
 			catch (Exception ec)
 			{
@@ -115,7 +115,7 @@ namespace BLL.Services.Implementations
 		{
 			try
 			{
-				var entity = repository.GetAll().AsQueryable().Include(x => x.CategoryPosition).Include(x=>x.User).Include(x => x.VaccinationCenter).FirstOrDefault(x => x.UserId == userId && !x.IsDeleted);
+				var entity = repository.GetAll().AsQueryable().Include(x => x.CategoryPosition).Include(x => x.User).Include(x => x.VaccinationCenter).FirstOrDefault(x => x.UserId == userId && !x.IsDeleted);
 				if (entity == null)
 				{
 					return ApiResponse<EmployeeResponse>.ApiResponseFail("Nhân viên này không tồn tại");
@@ -133,7 +133,7 @@ namespace BLL.Services.Implementations
 		{
 			try
 			{
-				var entity = repository.GetAll().AsQueryable().Include(x => x.CategoryPosition).Include(x => x.VaccinationCenter).Where(x => !x.IsDeleted && x.CategoryPosition.Title!="Admin").ToList();
+				var entity = repository.GetAll().AsQueryable().Include(x => x.CategoryPosition).Include(x => x.VaccinationCenter).Where(x => !x.IsDeleted && x.CategoryPosition.Title != "Admin").ToList();
 				if (entity.Count() == 0)
 				{
 					return ApiResponse<List<EmployeeResponse>>.ApiResponseFail("Chưa có dữ liệu");
@@ -154,7 +154,7 @@ namespace BLL.Services.Implementations
 				var entity = repository.GetAll().FirstOrDefault(x => x.Id == updateEmployeeRequest.Id);
 				if (entity == null)
 				{
-					return ApiResponse<string>.ApiResponseFail("Nhân viên này không tồn tại");
+					return ApiResponse<string>.ApiResponseFail("Nhân viên này không tồn tại", "Nhân viên này không tồn tại");
 				}
 				if (!string.IsNullOrEmpty(updateEmployeeRequest.FullName))
 				{
@@ -184,7 +184,7 @@ namespace BLL.Services.Implementations
 				entity.DateOfBirth = updateEmployeeRequest.DateOfBirth;
 				entity.UpdatedTime = DateTime.Now;
 				repository.Update(entity);
-				return ApiResponse<string>.ApiResponseSuccess("Cập nhật thành công");
+				return ApiResponse<string>.ApiResponseSuccess("Cập nhật thành công", "Cập nhật thành công");
 			}
 			catch (Exception ec)
 			{
