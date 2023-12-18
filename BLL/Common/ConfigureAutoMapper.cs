@@ -43,6 +43,8 @@ namespace BLL.Configurations
             CreateMap<DetailVaccinationRegistrationResponse, DtoDetailVaccinationRegistration>().ReverseMap();
             // Detail medical record
             CreateMap<DetailMedicalRecordResponse, DtoDetailMedicalRecord>().ReverseMap();
+            CreateMap<CreateDetailMedicalRequest, DtoDetailMedicalRecord>().ReverseMap();
+            CreateMap<UpdateDetailMedicalRequest, DtoDetailMedicalRecord>().ReverseMap();
             // Employee
             CreateMap<EmployeeResponse, DtoEmployee>().ReverseMap();
             CreateMap<CreateEmployeeRequest, DtoEmployee>().ReverseMap();
@@ -53,6 +55,7 @@ namespace BLL.Configurations
             CreateMap<UpdateInjectionChartRequest, DtoInjectionChart>().ReverseMap();
             // Medical record
             CreateMap<MedicalRecordResponse, DtoMedicalRecord>().ReverseMap();
+            CreateMap<CreateMedicalRecordRequest, DtoMedicalRecord>().ReverseMap();
             // price vaccine
             CreateMap<PriceVaccineResponse, DtoPriceVaccine>().ReverseMap();
             CreateMap<CreatePriceVaccineRequest, DtoPriceVaccine>().ReverseMap();

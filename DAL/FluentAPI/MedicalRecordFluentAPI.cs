@@ -19,6 +19,7 @@ namespace DAL.FluentAPI
             builder.Property(x => x.CreatedTime).HasDefaultValue(DateTime.Now);
             builder.Property(x => x.CreatedBy).HasDefaultValue("admin");
             builder.Property(x => x.Id).HasMaxLength(50);
+            builder.Property(x => x.CodeMedicalRecord).HasMaxLength(50);
             builder.Property(x => x.IdCustomer).HasMaxLength(50);
             builder.HasKey(x => new { x.Id });
             builder.HasMany(x => x.DetailMedicalRecords);

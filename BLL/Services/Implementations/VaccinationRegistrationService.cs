@@ -70,7 +70,7 @@ namespace BLL.Services.Implementations
 		{
 			try
 			{
-				var entity = _context.VaccinationRegistrations.Include(x => x.VaccineBatch).ThenInclude(x => x.Vaccine).Include(x => x.Customer).Include(x => x.VaccinationCenter).FirstOrDefault(x => x.Id == idVaccinationRegistration && !x.IsDeleted);
+				var entity = _context.VaccinationRegistrations.Include(x=>x.Employee).Include(x => x.VaccineBatch).ThenInclude(x => x.Vaccine).Include(x => x.Customer).Include(x => x.VaccinationCenter).FirstOrDefault(x => x.Id == idVaccinationRegistration && !x.IsDeleted);
 				if (entity == null)
 				{
 					return ApiResponse<VaccinationRegistrationResponse>.ApiResponseFail("Phiếu đăng ký tiêm này không tồn tại");
@@ -93,7 +93,7 @@ namespace BLL.Services.Implementations
 				{
 					return ApiResponse<VaccinationRegistrationResponse>.ApiResponseFail("Không tồn tại khách hàng này");
 				}
-				var entity = _context.VaccinationRegistrations.Include(x => x.VaccineBatch).ThenInclude(x => x.Vaccine).Include(x => x.Customer).Include(x => x.VaccinationCenter).FirstOrDefault(x => x.IdCustomer == customer.Id);
+				var entity = _context.VaccinationRegistrations.Include(x => x.Employee).Include(x => x.VaccineBatch).ThenInclude(x => x.Vaccine).Include(x => x.Customer).Include(x => x.VaccinationCenter).FirstOrDefault(x => x.IdCustomer == customer.Id);
 				if (entity == null)
 				{
 					return ApiResponse<VaccinationRegistrationResponse>.ApiResponseFail("Khách hàng này chưa đăng ký tiêm tại đây");
@@ -111,7 +111,7 @@ namespace BLL.Services.Implementations
 		{
 			try
 			{
-				var entity = _context.VaccinationRegistrations.Include(x => x.VaccineBatch).ThenInclude(x => x.Vaccine).Include(x => x.Customer).Include(x => x.VaccinationCenter).Where(x => !x.IsDeleted).ToList();
+				var entity = _context.VaccinationRegistrations.Include(x => x.Employee).Include(x => x.VaccineBatch).ThenInclude(x => x.Vaccine).Include(x => x.Customer).Include(x => x.VaccinationCenter).Where(x => !x.IsDeleted).ToList();
 				if (entity.Count() == 0)
 				{
 					return ApiResponse<List<VaccinationRegistrationResponse>>.ApiResponseFail("Chưa có dữ liệu");
@@ -284,8 +284,9 @@ namespace BLL.Services.Implementations
 					entity.Note = updateVaccinationRegistrationRequest.Note;
 				}
 				entity.IdEmployee = updateVaccinationRegistrationRequest.IdEmployee;
+				entity.UpdatedBy = updateVaccinationRegistrationRequest.IdEmployee;
 				entity.UpdatedTime = DateTime.Now;
-				_repositoryVaccinationRegistration.Update(entity);
+                _repositoryVaccinationRegistration.Update(entity);
 				return ApiResponse<string>.ApiResponseSuccess("Cập nhật thành công", "Cập nhật thành công");
 			}
 			catch (Exception ec)
