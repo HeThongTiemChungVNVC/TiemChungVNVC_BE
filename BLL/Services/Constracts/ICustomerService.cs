@@ -9,16 +9,18 @@ using System.Threading.Tasks;
 
 namespace BLL.Services.Constracts
 {
-    public interface ICustomerService
-    {
-        Task<ApiResponse<string>> CreateCustomer(CreateCustomerRequest createCustomerRequest);
+	public interface ICustomerService
+	{
+		Task<ApiResponse<string>> CreateCustomer(CreateCustomerRequest createCustomerRequest);
 
-        Task<ApiResponse<List<CustomerResponse>>> GetCustomers();
+		Task<ApiResponse<List<CustomerResponse>>> GetCustomers();
 
-        Task<ApiResponse<CustomerResponse>> GetCustomer(string idCustomer);
+		Task<ApiResponse<CustomerResponse>> GetCustomer(string idCustomer);
 
-        Task<ApiResponse<string>> UpdateCustomer(UpdateCustomerRequest updateCustomerRequest);
+		Task<ApiResponse<CustomerResponse>> GetCustomerByCodeCustomer(string CodeCustomer);
 
-        Task<ApiResponse<string>> DeleteCustomer(string idCustomer);
-    }
+		Task<ApiResponse<string>> UpdateCustomer(UpdateCustomerRequest updateCustomerRequest);
+
+		Task<ApiResponse<string>> DeleteCustomer(string idCustomer);
+	}
 }

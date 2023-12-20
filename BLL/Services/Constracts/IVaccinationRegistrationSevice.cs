@@ -24,5 +24,11 @@ namespace BLL.Services.Constracts
 		Task<ApiResponse<string>> DeleteVaccinationRegistration(string idVaccinationRegistration);
 
 		Task<ApiResponse<string>> RegistrationVaccination(RegistrationRequest registrationRequest);
+
+		Task<ApiResponse<string>> RegistrationVaccinationByAdmin(RegistrationRequestByAdmin registrationRequest);
+
+		Task<ApiResponse<string>> UpdateDetailRegistrationVaccination(UpdateDetailRegistrationVaccinationRequest updateDetailRegistrationVaccinationRequest);
+
+		Task<ApiResponse<string>> SendEmailReminder(string idDetailRegistration);
 	}
 }

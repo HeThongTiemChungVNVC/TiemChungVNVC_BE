@@ -5,6 +5,7 @@ using BLL.Responses;
 using BLL.Services.Constracts;
 using DAL.Dtos;
 using Repository.DbContexts;
+using Repository.Migrations;
 using Repository.Repository;
 
 namespace BLL.Services.Implementations
@@ -80,6 +81,24 @@ namespace BLL.Services.Implementations
 			try
 			{
 				var entity = repository.GetAll().FirstOrDefault(x => x.Id == idCustomer && !x.IsDeleted);
+				if (entity == null)
+				{
+					return ApiResponse<CustomerResponse>.ApiResponseFail("Khách hàng này không tồn tại");
+				}
+				var response = _mapper.Map<CustomerResponse>(entity);
+				return ApiResponse<CustomerResponse>.ApiResponseSuccess(response);
+			}
+			catch (Exception ec)
+			{
+				return ApiResponse<CustomerResponse>.ApiResponseFail(ec.Message);
+			}
+		}
+
+		public async Task<ApiResponse<CustomerResponse>> GetCustomerByCodeCustomer(string CodeCustomer)
+		{
+			try
+			{
+				var entity = repository.GetAll().FirstOrDefault(x => x.CodeCustomer == CodeCustomer && !x.IsDeleted);
 				if (entity == null)
 				{
 					return ApiResponse<CustomerResponse>.ApiResponseFail("Khách hàng này không tồn tại");

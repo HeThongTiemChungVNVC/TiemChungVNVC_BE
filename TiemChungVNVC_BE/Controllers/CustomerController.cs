@@ -43,8 +43,20 @@ namespace TiemChungVNVC_BE.Controllers
                 return BadRequest(ec.Message);
             }
         }
-
-        [HttpDelete("{id}")]
+		[HttpGet("code/{code_customer}")]
+		public async Task<IActionResult> GetByCodeCustomer(string code_customer)
+		{
+			try
+			{
+				var response = await CustomerService.GetCustomerByCodeCustomer(code_customer);
+				return Ok(response);
+			}
+			catch (Exception ec)
+			{
+				return BadRequest(ec.Message);
+			}
+		}
+		[HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
             try

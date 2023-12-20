@@ -31,6 +31,20 @@ namespace TiemChungVNVC_BE.Controllers
 			}
 		}
 
+		[HttpPost("registration/admin")]
+		public async Task<IActionResult> RegistrationByAdmin(RegistrationRequestByAdmin request)
+		{
+			try
+			{
+				var res = await _serviceService.RegistrationVaccinationByAdmin(request);
+				return Ok(res);
+			}
+			catch (Exception ec)
+			{
+				return BadRequest(ec.Message);
+			}
+		}
+
 		[HttpGet]
 		public async Task<IActionResult> GetAll()
 		{
@@ -86,13 +100,26 @@ namespace TiemChungVNVC_BE.Controllers
 				return BadRequest(ec.Message);
 			}
 		}
-
-		[HttpGet("customer/{code_customer}")]
-		public async Task<IActionResult> Registration(string code_customer)
+		[HttpPut("detail")]
+		public async Task<IActionResult> UpdateDetail(UpdateDetailRegistrationVaccinationRequest request)
 		{
 			try
 			{
-				var res = await _serviceService.GetVaccinationRegistrationByCodeCustomer(code_customer);
+				var response = await _serviceService.UpdateDetailRegistrationVaccination(request);
+				return Ok(response);
+			}
+			catch (Exception ec)
+			{
+				return BadRequest(ec.Message);
+			}
+		}
+
+		[HttpGet("detail/send-email/{id}")]
+		public async Task<IActionResult> Registration(string id)
+		{
+			try
+			{
+				var res = await _serviceService.SendEmailReminder(id);
 				return Ok(res);
 			}
 			catch (Exception ec)

@@ -27,6 +27,20 @@ namespace BLL.Requests
 
 		public string VaccinationDate { get; set; }
 
+		public string? CodeCustomer { get; set; }
+
+		public string? IdEmployee { get; set; }
+	}
+	public class RegistrationRequestByAdmin
+	{
+		public string IdVaccine { get; set; }
+
+		public string IdVaccinationCenter { get; set; }
+
+		public string VaccinationDate { get; set; }
+
+		public string CodeCustomer { get; set; }
+
 		public string? IdEmployee { get; set; }
 	}
 }
