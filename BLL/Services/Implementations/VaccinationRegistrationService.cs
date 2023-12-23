@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Repository.Migrations;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.Xml;
+using System.Diagnostics.Eventing.Reader;
 
 namespace BLL.Services.Implementations
 {
@@ -75,13 +76,49 @@ namespace BLL.Services.Implementations
 		{
 			try
 			{
-				var entity = _context.VaccinationRegistrations.Include(x => x.Employee).Include(x => x.DetailsVacccinationRegistrations).Include(x => x.VaccineBatch).ThenInclude(x => x.Vaccine).Include(x => x.Customer).Include(x => x.VaccinationCenter).FirstOrDefault(x => x.Id == idVaccinationRegistration && !x.IsDeleted);
+				var entity = (from c in _context.VaccinationRegistrations
+							  join e in _context.Employees on c.IdEmployee equals e.Id
+							  join batch in _context.VaccineBatches on c.IdVaccineBatch equals batch.Id
+							  join center in _context.VaccinationCenters on c.IdVaccinationCenter equals center.Id
+							  join customer in _context.Customers on c.IdCustomer equals customer.Id
+
+							  where !c.IsDeleted && c.Id == idVaccinationRegistration
+							  select new VaccinationRegistrationResponse()
+							  {
+								  Id = c.Id,
+								  IdEmployee = c.IdEmployee,
+								  IdCustomer = c.IdCustomer,
+								  Customer = new CustomerResponse() { FullName = customer.FullName, Id = customer.Id, CodeCustomer = customer.CodeCustomer },
+								  VaccineBatch = new VaccineBatchResponse()
+								  {
+									  Id = batch.Id,
+									  CodeBatch = batch.CodeBatch,
+									  Vaccine = new VaccineResponse() { NameVaccine = batch.Vaccine.NameVaccine }
+								  },
+								  TotalPrice = c.TotalPrice,
+								  Note = c.Note,
+								  VaccinationCenter = new VaccinationCenterResponse()
+								  {
+									  Id = center.Id,
+									  CenterName = center.CenterName
+								  },
+								  Employee = new EmployeeResponse()
+								  {
+									  FullName = e.FullName,
+									  CodeEmployee = e.CodeEmployee
+								  },
+								  IdVaccinationCenter = c.IdVaccinationCenter,
+								  IdVaccineBatch = c.IdVaccineBatch,
+								  Status = c.Status,
+								  VaccinationDate = c.VaccinationDate
+							  }).FirstOrDefault();
+				var details = _context.DetailVaccinationRegistrations.Where(x => x.IdVaccinationRegistration == idVaccinationRegistration && !x.IsDeleted).ToList();
+				entity.DetailsVacccinationRegistrations = details.Select(_mapper.Map<DtoDetailVaccinationRegistration, DetailVaccinationRegistrationResponse>).ToList();
 				if (entity == null)
 				{
 					return ApiResponse<VaccinationRegistrationResponse>.ApiResponseFail("Phiếu đăng ký tiêm này không tồn tại");
 				}
-				var response = _mapper.Map<VaccinationRegistrationResponse>(entity);
-				return ApiResponse<VaccinationRegistrationResponse>.ApiResponseSuccess(response);
+				return ApiResponse<VaccinationRegistrationResponse>.ApiResponseSuccess(entity);
 			}
 			catch (Exception ec)
 			{
@@ -126,6 +163,8 @@ namespace BLL.Services.Implementations
 								select new VaccinationRegistrationResponse()
 								{
 									Id = c.Id,
+									IdEmployee = c.IdEmployee,
+									IdCustomer = c.IdCustomer,	
 									Customer = new CustomerResponse() { FullName = customer.FullName, Id = customer.Id, CodeCustomer = customer.CodeCustomer },
 									VaccineBatch = new VaccineBatchResponse()
 									{
@@ -142,7 +181,9 @@ namespace BLL.Services.Implementations
 									},
 									Employee = new EmployeeResponse()
 									{
-										FullName = e.FullName
+										FullName = e.FullName,
+										CodeEmployee = e.CodeEmployee
+
 									},
 									IdVaccinationCenter = c.IdVaccinationCenter,
 									IdVaccineBatch = c.IdVaccineBatch,
@@ -335,8 +376,20 @@ namespace BLL.Services.Implementations
 				}
 				var vaccinationRegistration = _context.VaccinationRegistrations.Include(x => x.Employee).Include(x => x.DetailsVacccinationRegistrations).Include(x => x.VaccineBatch).ThenInclude(x => x.Vaccine).Include(x => x.Customer).Include(x => x.VaccinationCenter).FirstOrDefault(x => x.Id == dtoDetail.IdVaccinationRegistration && !x.IsDeleted);
 				var days = (dtoDetail.DateVaccination - DateTime.Now).Days;
-
-				string body = $"Xin chào bạn: {vaccinationRegistration.Customer.FullName}, sắp tới bạn có lịch tiêm tại hệ thống Tiêm Chủng VNVC còn {days} ngày.<br/>" +
+				var mess = "";
+				if (days < 0)
+				{
+					mess = "bạn đã trễ hẹn lịch tiêm vui lòng đến trung tâm sớm nhất để tiêm";
+				}
+				else if (days == 0)
+				{
+					mess = "bạn có lịch tiêm vào ngày hôm nay vui lòng bạn đến trung tâm";
+				}
+				else
+				{
+					mess = $"sắp tới bạn có lịch tiêm tại hệ thống Tiêm Chủng VNVC còn {days} ngày";
+				}
+				string body = $"Xin chào bạn: {vaccinationRegistration.Customer.FullName}, {mess} .<br/>" +
 				$"Vui lòng bạn đến trung tâm <b>{vaccinationRegistration.VaccinationCenter.CenterName}</b> vào ngày: <b>{dtoDetail.DateVaccination.ToString("dd/MM/yyyy")}.</b><br/>" +
 				$"Tại địa chỉ: <b>{vaccinationRegistration.VaccinationCenter.Address}</b><br/>" +
 				$"Mã khách hàng của bạn là: <b>{vaccinationRegistration.Customer.CodeCustomer}</b><br/>";
