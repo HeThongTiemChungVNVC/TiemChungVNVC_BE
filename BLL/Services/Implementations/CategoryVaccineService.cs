@@ -85,7 +85,7 @@ namespace BLL.Services.Implementations
 				var entity = repository.GetAll().Where(x => !x.IsDeleted).ToList();
 				if (entity.Count() == 0)
 				{
-					return ApiResponse<List<CategoryVaccineResponse>>.ApiResponseFail("Chưa có dữ liệu");
+					return ApiResponse<List<CategoryVaccineResponse>>.ApiResponseSuccess("Chưa có dữ liệu", null);
 				}
 				var response = entity.Select(_mapper.Map<DtoCategoryVaccine, CategoryVaccineResponse>).ToList();
 				return ApiResponse<List<CategoryVaccineResponse>>.ApiResponseSuccess(response);

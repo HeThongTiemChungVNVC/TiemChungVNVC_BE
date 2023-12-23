@@ -83,13 +83,38 @@ namespace BLL.Services.Implementations
 		{
 			try
 			{
-				var entity = repository.GetAll().AsQueryable().Include(x => x.InjectionChart).Include(x => x.CategoryVaccine).Where(x => !x.IsDeleted).ToList();
+				//var entity = repository.GetAll().AsQueryable().Include(x => x.InjectionChart).Include(x => x.CategoryVaccine).Where(x => !x.IsDeleted).ToList();
+				var entity = (from v in _context.Vaccines
+							  join inject in _context.InjectionCharts on v.Id equals inject.IdVaccine into _inject
+							  from inject2 in _inject.DefaultIfEmpty()
+							  join cate in _context.CategoryVaccines on v.CategoryVaccineId equals cate.Id into _cate
+							  from cate2 in _cate.DefaultIfEmpty()
+							  where !v.IsDeleted
+							  select new VaccineResponse
+							  {
+								  Id = v.Id,
+								  CategoryVaccine = new CategoryVaccineResponse()
+								  {
+									  Id = cate2.Id,
+									  Title = cate2.Title,
+								  },
+								  CategoryVaccineId = cate2.Id,
+								  InjectionChart = new InjectionChartResponse()
+								  {
+									  Id = inject2.Id,
+									  IdVaccine = inject2.IdVaccine
+								  },
+								  Condition = v.Condition,
+								  NameVaccine = v.NameVaccine,
+								  Prevention = v.Prevention,
+								  InjectionSite = v.InjectionSite,
+								  Image = v.Image
+							  }).ToList();
 				if (entity.Count() == 0)
 				{
 					return ApiResponse<List<VaccineResponse>>.ApiResponseFail("Chưa có dữ liệu");
 				}
-				var response = entity.Select(_mapper.Map<DtoVaccine, VaccineResponse>).ToList();
-				return ApiResponse<List<VaccineResponse>>.ApiResponseSuccess(response);
+				return ApiResponse<List<VaccineResponse>>.ApiResponseSuccess(entity);
 			}
 			catch (Exception ec)
 			{

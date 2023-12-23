@@ -109,18 +109,57 @@ namespace BLL.Services.Implementations
 		{
 			try
 			{
-				var entity = repository.GetAll().AsQueryable().Include(x => x.Supplier).Include(x => x.PriceVaccine).Include(x => x.Vaccine).Where(x => !x.IsDeleted).ToList();
+				//var entity = repository.GetAll().AsQueryable().Include(x => x.Supplier).Include(x => x.PriceVaccine).Include(x => x.Vaccine).Where(x => !x.IsDeleted).ToList();
+				var entity = (
+						from b in _context.VaccineBatches
+						join sup in _context.Suppliers on b.SupplierId equals sup.Id
+						join v in _context.Vaccines on b.VaccineId equals v.Id
+						where !b.IsDeleted
+						select new VaccineBatchResponse
+						{
+							CodeBatch = b.CodeBatch,
+							Id = b.Id,
+							Country = b.Country,
+							VaccineId = b.VaccineId,
+							ManufacturingDate = b.ManufacturingDate,
+							ExpirationDate = b.ExpirationDate,
+							SupplierId = b.SupplierId,
+							Supplier = new SupplierResponse()
+							{
+								NameSupplier = sup.NameSupplier
+							},
+							QuantityOfVaccine = b.QuantityOfVaccine,
+							Vaccine = new VaccineResponse()
+							{
+								Id = v.Id,
+								NameVaccine = v.NameVaccine
+							},
+							PriceVaccine = _mapper.Map<PriceVaccineResponse>(b.PriceVaccine)
+						}
+					).ToList();
 				if (entity.Count() == 0)
 				{
-					return ApiResponse<List<VaccineBatchResponse>>.ApiResponseFail("Chưa có dữ liệu");
+					return ApiResponse<List<VaccineBatchResponse>>.ApiResponseSuccess("Chưa có dữ liệu", null);
 				}
-				var response = entity.Select(_mapper.Map<DtoVaccineBatch, VaccineBatchResponse>).ToList();
-				return ApiResponse<List<VaccineBatchResponse>>.ApiResponseSuccess(response);
+				return ApiResponse<List<VaccineBatchResponse>>.ApiResponseSuccess(entity);
 			}
 			catch (Exception ec)
 			{
 				return ApiResponse<List<VaccineBatchResponse>>.ApiResponseFail(ec.Message);
 			}
+		}
+
+		private PriceVaccineResponse GetPrice(string idVaccineBatch)
+		{
+			var res = (from price in _context.PriceVaccines
+					   where price.IdVaccineBacth == idVaccineBatch && !price.IsDeleted
+					   select price
+					   ).FirstOrDefault();
+			if (res == null)
+				return null;
+			var entity = _mapper.Map<PriceVaccineResponse>(res);
+			entity.VaccinceBatch = null;
+			return entity;
 		}
 
 		public async Task<ApiResponse<string>> UpdateVaccineBatch(UpdateVaccineBatchRequest updateVaccineBatchRequest)

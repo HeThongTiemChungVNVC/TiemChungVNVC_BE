@@ -85,7 +85,7 @@ namespace BLL.Services.Implementations
 				var entity = repository.GetAll().Where(x => !x.IsDeleted && x.Title != "Admin").ToList();
 				if (entity.Count() == 0)
 				{
-					return ApiResponse<List<CategoryPositionResponse>>.ApiResponseFail("Chưa có dữ liệu");
+					return ApiResponse<List<CategoryPositionResponse>>.ApiResponseSuccess("Chưa có dữ liệu", null);
 				}
 				var response = entity.Select(_mapper.Map<DtoCategoryPosition, CategoryPositionResponse>).ToList();
 				return ApiResponse<List<CategoryPositionResponse>>.ApiResponseSuccess(response);
